@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t krish113/docker-ci .
   - docker images krish113/docker-ci
+
+before-deploy:
+  - docker login -u krish113 -p Krish@123
+
+deploy:
+  provider: script
+  script: docker push krish113/docker-ci
+  on:
+    branch: master
